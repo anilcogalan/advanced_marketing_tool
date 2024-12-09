@@ -16,6 +16,14 @@ from scipy.stats import chi2_contingency, f_oneway
 import statsmodels.api as sm
 from statsmodels.stats.multicomp import pairwise_tukeyhsd
 
+try:
+    import umap
+    UMAP_AVAILABLE = True
+except ImportError:
+    UMAP_AVAILABLE = False
+    import warnings
+    warnings.warn("UMAP not available, falling back to PCA for dimensionality reduction")
+
 class AdvancedSegmentationModel(BaseModel):
     """
     Gelişmiş Müşteri Segmentasyon Modeli
@@ -45,7 +53,10 @@ class AdvancedSegmentationModel(BaseModel):
         self.clustering_model = None
         self.feature_selector = None
         self.scaler = StandardScaler()
-        self.dim_reducer = PCA(n_components=2, random_state=self.random_state)
+        if UMAP_AVAILABLE:
+            self.dim_reducer = umap.UMAP(n_components=2, random_state=self.random_state)
+        else:
+            self.dim_reducer = PCA(n_components=2, random_state=self.random_state)
         self.selected_features = None
         self.segment_profiles = None
         self.segment_transitions = None
