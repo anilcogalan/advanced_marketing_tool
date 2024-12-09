@@ -23,13 +23,5 @@ setup(
     author="Anil Cogalan",
     author_email="anilcogalan@gmail.com",
     description="Advanced Marketing Analytics Library",
-    long_description=open('README.md').read(),
-    long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/marketing_analytics",
-    classifiers=[
-        "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
-        "Operating System :: OS Independent",
-    ],
-    python_requires='>=3.7',
+    python_requires=">=3.7",
 ) 

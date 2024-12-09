@@ -30,10 +30,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install pytest pytest-cov
+        pip install -e .
         
     - name: Run tests with coverage
       run: |
-        pytest --cov=marketing_analytics tests/
+        python -m pytest --cov=marketing_analytics tests/
         
     - name: Upload coverage reports
       uses: codecov/codecov-action@v3
