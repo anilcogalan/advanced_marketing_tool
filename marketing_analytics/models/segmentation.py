@@ -39,7 +39,7 @@ class AdvancedSegmentationModel(BaseModel):
     
     def __init__(self,
                  method: str = 'kmeans',
-                 n_segments: int = 5,
+                 n_segments: int = 3,
                  feature_selection: bool = True,
                  n_features: Optional[int] = None,
                  random_state: int = 42):
@@ -409,3 +409,19 @@ class AdvancedSegmentationModel(BaseModel):
         """
         self.fit(X)
         return self.predict(X)
+        
+    def get_segment_profiles(self, X: pd.DataFrame) -> Dict:
+        """
+        Segment profillerini getir
+        
+        Args:
+            X: Özellik matrisi
+            
+        Returns:
+            Dict: Segment profilleri
+        """
+        if not self.is_fitted:
+            raise ValueError("Model must be fitted first")
+            
+        segments = self.predict(X)
+        return self._calculate_segment_profiles(X, segments)
