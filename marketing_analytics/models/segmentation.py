@@ -420,3 +420,127 @@ class AdvancedSegmentationModel(BaseModel):
             
         segments = self.predict(X)
         return self._calculate_segment_profiles(X, segments)
+        
+    def _recommend_channels(self, profile: pd.Series) -> List[str]:
+        """
+        Segment için kanal önerileri
+        
+        Args:
+            profile: Segment profili
+            
+        Returns:
+            List[str]: Önerilen kanallar
+        """
+        # Basit bir örnek implementasyon
+        channels = []
+        if profile.mean() > 0.5:
+            channels.extend(['email', 'social_media'])
+        else:
+            channels.extend(['sms', 'direct_mail'])
+        return channels
+        
+    def _recommend_messaging(self, profile: pd.Series) -> List[str]:
+        """
+        Segment için mesaj teması önerileri
+        
+        Args:
+            profile: Segment profili
+            
+        Returns:
+            List[str]: Önerilen mesaj temaları
+        """
+        # Basit bir örnek implementasyon
+        themes = []
+        if profile.mean() > 0.5:
+            themes.extend(['premium', 'innovation'])
+        else:
+            themes.extend(['value', 'reliability'])
+        return themes
+        
+    def _calculate_price_sensitivity(self, segment_data: pd.DataFrame) -> Dict:
+        """
+        Segment için fiyat hassasiyeti analizi
+        
+        Args:
+            segment_data: Segment verileri
+            
+        Returns:
+            Dict: Fiyat hassasiyeti metrikleri
+        """
+        # Basit bir örnek implementasyon
+        mean_values = segment_data.mean()
+        return {
+            'price_elasticity': float(mean_values.mean()),  # Örnek bir metrik
+            'optimal_price_range': {
+                'min': float(mean_values.min()),
+                'max': float(mean_values.max())
+            }
+        }
+
+    def _analyze_promotion_effectiveness(self, segment_data: pd.DataFrame) -> Dict:
+        """
+        Promosyon etkinliği analizi
+        
+        Args:
+            segment_data: Segment verileri
+            
+        Returns:
+            Dict: Promosyon etkinliği metrikleri
+        """
+        # Basit bir örnek implementasyon
+        return {
+            'response_rate': 0.15,  # Örnek değerler
+            'roi': 2.5,
+            'preferred_promotions': ['discount', 'bundle']
+        }
+
+    def _analyze_channel_preferences(self, segment_data: pd.DataFrame) -> Dict:
+        """
+        Kanal tercihleri analizi
+        
+        Args:
+            segment_data: Segment verileri
+            
+        Returns:
+            Dict: Kanal tercihi metrikleri
+        """
+        # Basit bir örnek implementasyon
+        return {
+            'primary_channel': 'email',
+            'secondary_channel': 'social_media',
+            'engagement_rates': {
+                'email': 0.25,
+                'social_media': 0.15,
+                'sms': 0.10
+            }
+        }
+
+    def _calculate_value_potential(self, segment_data: pd.DataFrame) -> Dict:
+        """
+        Değer potansiyeli hesaplama
+        
+        Args:
+            segment_data: Segment verileri
+            
+        Returns:
+            Dict: Değer potansiyeli metrikleri
+        """
+        # Basit bir örnek implementasyon
+        return {
+            'lifetime_value': 1000.0,  # Örnek değerler
+            'growth_rate': 0.05,
+            'upsell_potential': 'high'
+        }
+
+    def _identify_expansion_opportunities(self, segment_data: pd.DataFrame) -> List[str]:
+        """
+        Genişleme fırsatlarını belirleme
+        
+        Args:
+            segment_data: Segment verileri
+            
+        Returns:
+            List[str]: Fırsat alanları
+        """
+        # Basit bir örnek implementasyon
+        return ['cross-sell', 'market_expansion', 'product_development']
