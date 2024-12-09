@@ -10,6 +10,7 @@ from sklearn.metrics import silhouette_score, calinski_harabasz_score
 import umap
 from scipy.cluster.hierarchy import dendrogram, linkage
 from sklearn.feature_selection import SelectKBest, mutual_info_classif, VarianceThreshold
+from scipy import stats
 import shap
 import optuna
 from scipy.stats import chi2_contingency, f_oneway
