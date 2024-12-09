@@ -216,12 +216,7 @@ class AdvancedSegmentationModel(BaseModel):
         # Veri ölçeklendirme
         X_scaled = self.scaler.fit_transform(X)
         
-        # Hyperparameter optimizasyonu
-        if self.method in ['kmeans', 'dbscan']:
-            best_params = self._optimize_hyperparameters(X_scaled)
-            self.clustering_model.set_params(**best_params)
-            
-        # Model eğitimi
+        # Model eğitimi (hyperparameter optimizasyonunu kaldırdık)
         self.clustering_model.fit(X_scaled)
         
         # Segment profilleri
