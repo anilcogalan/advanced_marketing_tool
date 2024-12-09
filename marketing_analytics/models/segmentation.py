@@ -9,7 +9,7 @@ from sklearn.decomposition import PCA, FactorAnalysis
 from sklearn.metrics import silhouette_score, calinski_harabasz_score
 import umap
 from scipy.cluster.hierarchy import dendrogram, linkage
-from sklearn.feature_selection import SelectKBest, mutual_info_classif
+from sklearn.feature_selection import SelectKBest, mutual_info_classif, VarianceThreshold
 import shap
 import optuna
 from scipy.stats import chi2_contingency, f_oneway
@@ -395,3 +395,16 @@ class AdvancedSegmentationModel(BaseModel):
             'value_potential': self._calculate_value_potential(segment_data),
             'expansion_opportunities': self._identify_expansion_opportunities(segment_data)
         }
+        
+    def fit_predict(self, X: pd.DataFrame) -> np.ndarray:
+        """
+        Modeli eğit ve segmentleri tahmin et
+        
+        Args:
+            X: Özellik matrisi
+            
+        Returns:
+            np.ndarray: Segment etiketleri
+        """
+        self.fit(X)
+        return self.predict(X)
