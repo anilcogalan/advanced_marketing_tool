@@ -100,7 +100,7 @@ class AdvancedSegmentationModel(BaseModel):
         def objective(trial):
             if self.method == 'kmeans':
                 model = KMeans(
-                    n_clusters=trial.suggest_int('n_clusters', 2, 10),
+                    n_clusters=self.n_segments,
                     random_state=self.random_state
                 )
             elif self.method == 'dbscan':
