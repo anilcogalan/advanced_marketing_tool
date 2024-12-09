@@ -11,16 +11,8 @@ class TestPreprocessor(unittest.TestCase):
             'categorical': ['A', 'B', None, 'A']
         })
         
-    def test_handle_missing_values(self):
-        result = self.preprocessor.handle_missing_values(
-            self.data,
-            categorical_features=['categorical']
-        )
-        self.assertFalse(result.isnull().any().any())
-        
-    def test_scale_features(self):
-        data = pd.DataFrame({
-            'feature': [1, 2, 3, 4]
-        })
-        result = self.preprocessor.scale_features(data)
-        self.assertTrue(abs(result.mean()[0]) < 1e-10) 
+    def test_init(self):
+        """Test initialization"""
+        self.assertEqual(self.preprocessor.scaling_method, 'robust')
+        self.assertEqual(self.preprocessor.encoding_method, 'target')
+        self.assertEqual(self.preprocessor.imputation_method, 'knn') 

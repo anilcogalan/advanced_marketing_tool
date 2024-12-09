@@ -1,7 +1,9 @@
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import StandardScaler, MinMaxScaler, RobustScaler
-from sklearn.impute import KNNImputer, IterativeImputer
+from sklearn.impute import KNNImputer
+from sklearn.experimental import enable_iterative_imputer
+from sklearn.impute import IterativeImputer
 from category_encoders import TargetEncoder, WOEEncoder
 from feature_engine.outliers import OutlierTrimmer
 from feature_engine.selection import SmartCorrelatedSelection
