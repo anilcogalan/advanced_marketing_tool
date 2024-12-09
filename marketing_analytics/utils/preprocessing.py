@@ -58,15 +58,17 @@ class AdvancedPreprocessor:
         df = data.copy()
         
         # Kategorik değişkenler için mod ile doldurma
-        if categorical_features:
-            for col in categorical_features:
-                df[col] = df[col].fillna(df[col].mode()[0])
+        if categorical_features is None:
+            categorical_features = []  # Boş liste olarak başlat
+        
+        for col in categorical_features:
+            df[col] = df[col].fillna(df[col].mode()[0])
         
         # Sayısal değişkenler için gelişmiş imputation
         numeric_features = df.select_dtypes(include=[np.number]).columns
         numeric_features = [col for col in numeric_features if col not in categorical_features]
         
-        if numeric_features.size > 0:
+        if len(numeric_features) > 0:
             df[numeric_features] = self.imputer.fit_transform(df[numeric_features])
             
         return df
