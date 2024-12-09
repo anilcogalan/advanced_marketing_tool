@@ -18,7 +18,14 @@ setup(
         'feature-engine>=1.2.0',
         'optuna>=2.10.0',
         'imbalanced-learn>=0.8.1',
-        'yellowbrick>=1.4'
+        'yellowbrick>=1.4',
+        'umap-learn>=0.5.3',
+        'scipy>=1.7.0',
+        'statsmodels>=0.13.0',
+        'seaborn>=0.11.0',
+        'matplotlib>=3.3.0',
+        'PyYAML>=5.4.1',
+        'joblib>=1.0.0'
     ],
     author="Anil Cogalan",
     author_email="anilcogalan@gmail.com",

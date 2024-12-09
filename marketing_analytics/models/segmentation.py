@@ -45,7 +45,7 @@ class AdvancedSegmentationModel(BaseModel):
         self.clustering_model = None
         self.feature_selector = None
         self.scaler = StandardScaler()
-        self.dim_reducer = None
+        self.dim_reducer = PCA(n_components=2, random_state=self.random_state)
         self.selected_features = None
         self.segment_profiles = None
         self.segment_transitions = None
@@ -76,7 +76,7 @@ class AdvancedSegmentationModel(BaseModel):
             )
             
         # Boyut indirgeme
-        self.dim_reducer = UMAP(
+        self.dim_reducer = PCA(
             n_components=2,
             random_state=self.random_state
         )
