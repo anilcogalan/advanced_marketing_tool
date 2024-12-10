@@ -30,3 +30,12 @@ jobs:
     - name: Run tests
       run: |
         python -m pytest --cov=marketing_analytics tests/
+    
+    - name: Build and publish
+      if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+      env:
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+      run: |
+        python -m build
+        python -m twine upload dist/*

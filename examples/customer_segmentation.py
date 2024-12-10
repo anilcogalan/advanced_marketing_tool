@@ -1,14 +1,20 @@
 from marketing_analytics.models import AdvancedSegmentationModel
-from marketing_analytics.utils import AdvancedPreprocessor
 import pandas as pd
 
 # Load data
 data = pd.read_csv('customer_data.csv')
 
-# Preprocess
-preprocessor = AdvancedPreprocessor()
-processed_data = preprocessor.handle_missing_values(data)
+# Initialize model
+model = AdvancedSegmentationModel(
+    method='kmeans',
+    n_segments=3,
+    feature_selection=True
+)
 
-# Segment
-model = AdvancedSegmentationModel(n_segments=5)
-segments = model.fit_predict(processed_data) 
+# Fit and analyze
+segments = model.fit_predict(data)
+profiles = model.get_segment_profiles(data)
+recommendations = model.get_segment_recommendations(0, data)
+
+print("Segment Profiles:", profiles)
+print("Recommendations:", recommendations) 
