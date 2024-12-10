@@ -2,102 +2,104 @@
 
 ![PyPI version](https://img.shields.io/pypi/v/marketing-analytics-toolkit.svg)
 ![Python versions](https://img.shields.io/pypi/pyversions/marketing-analytics-toolkit.svg)
-![License](https://img.shields.io/github/license/yourusername/marketing-analytics-toolkit.svg)
+![License](https://img.shields.io/github/license/anilcogalan/advanced_marketing_tool.svg)
 
-Marketing Analytics Toolkit, pazarlama profesyonelleri ve veri bilimciler için geliştirilmiş kapsamlı bir Python kütüphanesidir. Bu toolkit, müşteri segmentasyonu, pazarlama karması optimizasyonu ve müşteri yaşam döngüsü analizi gibi ileri düzey pazarlama analitik araçları sunar.
+The Marketing Analytics Toolkit is a comprehensive Python library designed for marketing professionals and data scientists. This toolkit provides advanced marketing analytics tools for customer segmentation, marketing mix optimization, and customer lifecycle analysis.
 
-## 🚀 Özellikler
+## 🚀 Features
 
-### 🎯 Müşteri Segmentasyonu
-- RFM (Recency, Frequency, Monetary) analizi
-- Davranışsal segmentasyon
-- Demografik segmentasyon
-- K-means ve hierarchical clustering algoritmaları
-- Özel segment skorlama sistemleri
+### 🎯 Customer Segmentation
+- **Multiple Segmentation Methods**: K-means, Gaussian Mixture, DBSCAN, Hierarchical Clustering.
+- **Automatic Feature Selection**: Automatically selects the best features for segmentation.
+- **Segment Profiling**: Analyzes the characteristics of each segment.
+- **Segment Transition Analysis**: Calculates transition probabilities between segments.
 
-### 📊 Pazarlama Karması Optimizasyonu
-- 4P analizi (Price, Product, Place, Promotion)
-- Kanal performans analizi
-- Bütçe optimizasyonu
-- ROI hesaplamaları
-- A/B test analizi
+### 📊 Marketing Mix Optimization
+- **Dynamic Pricing**: Predicts optimal price points.
+- **Elasticity Analysis**: Analyzes the impact of price changes on demand.
+- **Competition-Based Pricing**: Considers competitor prices in pricing strategies.
 
-### 🔄 Müşteri Yaşam Döngüsü Analizi
-- Churn tahminleme
-- Müşteri değer hesaplaması (CLV)
-- Satın alma olasılığı modellemesi
-- Müşteri yolculuğu analizi
-- Cohort analizi
+### 🔄 Customer Lifecycle Analysis
+- **RNN-Based Behavior Modeling**: Predicts customer behaviors using recurrent neural networks.
+- **Survival Analysis**: Estimates customer lifetime and churn probabilities.
+- **CLV Prediction**: Calculates Customer Lifetime Value.
+- **Churn Prediction**: Estimates the likelihood of customer churn.
 
-### 📈 Kanal Atribüsyon Modellemesi
-- First-touch attribution
-- Last-touch attribution
-- Multi-touch attribution
-- Markov Chain modelleri
-- Custom attribution modelleri
+### 📈 Channel Attribution Modeling
+- **Markov Chain Attribution**: Analyzes the effects of different channels.
+- **Shapley Value Attribution**: Calculates contributions of each channel.
+- **Data-Driven Attribution**: Machine learning-based attribution methods.
 
-## 🛠️ Kurulum
+### 🛠️ Data Preprocessing Utilities
+- **Advanced Data Validation**: Comprehensive data validation checks.
+- **Outlier Detection**: Identifies and handles outliers in datasets.
+- **Feature Engineering**: Includes methods for feature selection and encoding.
 
-pip ile kurulum:
+### 📊 Visualization Tools
+The library provides various visualization tools to help interpret the results of analyses and models.
+
+## 🛠️ Installation
+
+### Install via pip:
 ```bash
 pip install marketing-analytics-toolkit
 ```
 
-Geliştirici kurulumu:
+### Developer Installation:
 ```bash
-git clone https://github.com/yourusername/marketing-analytics-toolkit.git
-cd marketing-analytics-toolkit
+git clone https://github.com/anilcogalan/advanced_marketing_tool.git
+cd advanced_marketing_tool
 pip install -e .
 ```
 
-## 📖 Hızlı Başlangıç
+## 📖 Quick Start
 
-### Müşteri Segmentasyonu Örneği
+### Customer Segmentation Example
 ```python
 from marketing_analytics.models import AdvancedSegmentationModel
-from marketing_analytics.utils import prepare_data
+import pandas as pd
 
-# Veri hazırlığı
-data = prepare_data(your_data)
+# Load data
+data = pd.read_csv('customer_data.csv')
 
-# Model başlatma
+# Initialize model
 model = AdvancedSegmentationModel(
-    n_segments=3,
     method='kmeans',
-    random_state=42
+    n_segments=3,
+    feature_selection=True
 )
 
-# Model eğitimi ve tahmin
+# Fit and analyze
 segments = model.fit_predict(data)
+profiles = model.get_segment_profiles(data)
+recommendations = model.get_segment_recommendations(0, data)
 
-# Segment önerileri alma
-recommendations = model.get_segment_recommendations(
-    segment_id=0,
-    data=data
-)
+print("Segment Profiles:", profiles)
+print("Recommendations:", recommendations)
 ```
 
-### RFM Analizi Örneği
+### Pricing Example
 ```python
-from marketing_analytics.analysis import RFMAnalysis
+from marketing_analytics.models import AdvancedPricingModel
+import pandas as pd
 
-# RFM analizi başlatma
-rfm = RFMAnalysis(
-    date_column='purchase_date',
-    customer_id_column='customer_id',
-    revenue_column='amount'
-)
+# Load features
+features = pd.read_csv('pricing_data.csv')
 
-# RFM skorlarını hesaplama
-rfm_scores = rfm.calculate_scores(transaction_data)
+# Initialize model
+pricing_model = AdvancedPricingModel(method='ml')
 
-# Segment özetlerini görüntüleme
-segment_summary = rfm.get_segment_summary()
+# Fit the model
+pricing_model.fit(features, features['demand'])
+
+# Predict optimal prices
+optimal_prices = pricing_model.predict_optimal_price(features)
+print("Optimal Prices:", optimal_prices)
 ```
 
-## 📊 Görselleştirme Araçları
+## 📊 Visualization Tools
 
-Kütüphane, çeşitli görselleştirme araçları sunar:
+The library offers various visualization tools:
 
 ```python
 from marketing_analytics.visualization import (
@@ -106,52 +108,52 @@ from marketing_analytics.visualization import (
     plot_customer_journey
 )
 
-# Müşteri segmentlerini görselleştirme
+# Visualize customer segments
 plot_customer_segments(segments_data)
 
-# Kanal performansını görselleştirme
+# Visualize channel performance
 plot_channel_performance(channel_data)
 ```
 
-## 📚 Detaylı Dokümantasyon
+## 📚 Detailed Documentation
 
-Daha detaylı bilgi için [dokümantasyonumuzu]("") ziyaret edin.
+For more detailed information, please refer to our [documentation]("").
 
-## 🤝 Katkıda Bulunma
+## 🤝 Contributing
 
-Projeye katkıda bulunmak için:
+To contribute to the project:
 
-1. Bu repository'yi fork edin
-2. Yeni bir branch oluşturun (`git checkout -b feature/amazing-feature`)
-3. Değişikliklerinizi commit edin (`git commit -m 'Add amazing feature'`)
-4. Branch'inizi push edin (`git push origin feature/amazing-feature`)
-5. Bir Pull Request oluşturun
+1. Fork this repository
+2. Create a new branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push your branch (`git push origin feature/amazing-feature`)
+5. Create a Pull Request
 
-## 📝 Lisans
+## 📝 License
 
-Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakın.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## 📫 İletişim
+## 📫 Contact
 
-- Proje Sahibi: [Your Name](mailto:your.email@example.com)
-- Twitter: [@yourusername](https://twitter.com/yourusername)
-- LinkedIn: [Your Name](https://linkedin.com/in/yourusername)
+- Project Owner: [Anil Cogalan](mailto:anilcogalan@gmail.com)
+- Twitter: [@anilcogalan](https://twitter.com/anilcogalan)
+- LinkedIn: [Anil Cogalan](https://linkedin.com/in/anilcogalan)
 
-## 🙏 Teşekkürler
+## 🙏 Acknowledgments
 
-Bu projeye katkıda bulunan herkese teşekkür ederiz. Katkıda bulunanların tam listesi için [CONTRIBUTORS.md](CONTRIBUTORS.md) dosyasına bakın.
+Thanks to everyone who contributed to this project. For a complete list of contributors, see the [CONTRIBUTORS.md](CONTRIBUTORS.md) file.
 
-## 📌 Alıntılama
+## 📌 Citation
 
-Bu projeyi akademik çalışmalarınızda kullanıyorsanız, lütfen aşağıdaki gibi alıntılayın:
+If you use this project in your academic work, please cite it as follows:
 
 ```bibtex
 @software{marketing_analytics_toolkit,
-  author = {Your Name},
+  author = {Anil Cogalan},
   title = {Marketing Analytics Toolkit},
   year = {2024},
   publisher = {GitHub},
-  url = {https://github.com/yourusername/marketing-analytics-toolkit}
+  url = {https://github.com/anilcogalan/advanced_marketing_tool}
 }
 ```
 

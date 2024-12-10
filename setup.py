@@ -11,7 +11,7 @@ setup(
     description="Advanced marketing analytics toolkit for customer segmentation and analysis",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/marketing-analytics-toolkit",
+    url="https://github.com/anilcogalan/advanced_marketing_tool",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 3 - Alpha",
